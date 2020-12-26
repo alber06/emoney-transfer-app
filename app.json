@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Emoney Transfer",
+    "slug": "emoney-transfer",
+    "description": "Transfer SPH tokens between accounts!",
+    "version": "0.1.0",
+    "platforms": ["ios", "android"],
+    "icon": "./assets/icon.png"
+  }
+}
