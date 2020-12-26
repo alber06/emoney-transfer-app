@@ -11,9 +11,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "alias": {
-    "@env": ".env"
-  },
+
   "plugins": ["react", "prettier"],
   "rules": {
     "semi": ["error", "never"],

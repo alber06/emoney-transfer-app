@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { Button, Colors } from 'react-native-paper'
 import { ETTextInput, ETHeadline, ETFooter } from '../components/auth'
 import useUser from '../utils/auth/useUser'
@@ -38,7 +38,7 @@ const Login = ({ navigation }) => {
   }, [navigation])
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="height">
       <ETHeadline />
       <View style={styles.form}>
         <ETTextInput label="Email" icon="envelope" value={email} onChangeText={(newEmail) => setEmail(newEmail)} />
@@ -61,7 +61,7 @@ const Login = ({ navigation }) => {
         text={errorMessage}
         color={Colors.redA700}
       />
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { View, StyleSheet } from 'react-native'
-import { Headline } from 'react-native-paper'
+import { Headline, Avatar } from 'react-native-paper'
 
 const styles = StyleSheet.create({
   headline: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 
 const ETHeadline = () => (
   <View style={styles.headline}>
-    <Icon name="dollar" size={40} color="#eaea3d" />
+    <Avatar.Image size={60} source={require('../../assets/icon.png')} style={{ backgroundColor: '#fff' }} />
     <Headline>Emoney Transfer</Headline>
   </View>
 )

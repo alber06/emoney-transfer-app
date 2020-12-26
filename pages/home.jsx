@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { ActivityIndicator, Headline, Button } from 'react-native-paper'
+import { ActivityIndicator, Headline, Button, Text, Colors } from 'react-native-paper'
 import useUser from '../utils/auth/useUser'
 import { ETDialog } from '../components'
 
@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+  },
+  username: {
+    color: Colors.grey500,
   },
   headline: {
     marginTop: 20,
@@ -40,8 +43,8 @@ const Home = () => {
     <View>
       <Text style={styles.text}>
         Hi&nbsp;
-        <Text>{user.email}</Text>
-        &nbsp; 👋
+        <Text style={styles.username}>{user.email}</Text>
+        &nbsp;👋
       </Text>
       <Headline style={styles.headline}>
         {user.amount}
