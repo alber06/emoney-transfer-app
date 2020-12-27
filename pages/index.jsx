@@ -1,7 +1,8 @@
 // @generated: @expo/next-adapter@2.1.0
 import 'react-native-gesture-handler'
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
+import AppLoading from 'expo-app-loading'
 import { NavigationContainer } from '@react-navigation/native'
 import { Provider as PaperProvider, DefaultTheme, Colors } from 'react-native-paper'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -28,6 +29,7 @@ const theme = {
 }
 
 const AppNavigator = () => {
+  const [isReady, setIsReady] = useState()
   const { authUser } = useUser()
 
   const getAuthStack = () => (
@@ -60,19 +62,24 @@ const AppNavigator = () => {
       />
     </>
   )
+
   return (
     <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <Stack.Navigator
-          headerMode="screen"
-          screenOptions={{
-            header: (props) => <ETTopBar {...props} />,
-            cardStyle: styles.container,
-          }}
-        >
-          {authUser && authUser.token ? getMainStack() : getAuthStack()}
-        </Stack.Navigator>
-      </NavigationContainer>
+      {!authUser ? (
+        <AppLoading onError={console.warn} />
+      ) : (
+        <NavigationContainer>
+          <Stack.Navigator
+            headerMode="screen"
+            screenOptions={{
+              header: (props) => <ETTopBar {...props} />,
+              cardStyle: styles.container,
+            }}
+          >
+            {authUser && authUser.token ? getMainStack() : getAuthStack()}
+          </Stack.Navigator>
+        </NavigationContainer>
+      )}
     </PaperProvider>
   )
 }
