@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 
 const ETHeadline = () => (
   <View style={styles.headline}>
-    <Avatar.Image size={60} source={require('../../assets/icon.png')} style={{ backgroundColor: '#fff' }} />
+    <Avatar.Image size={60} source={require('../../assets/ETH_image.png')} style={{ backgroundColor: '#fff' }} />
     <Headline>Emoney Transfer</Headline>
   </View>
 )

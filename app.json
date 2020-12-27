@@ -3,11 +3,19 @@
     "name": "Emoney Transfer",
     "slug": "emoney-transfer",
     "description": "Transfer SPH tokens between accounts!",
-    "version": "0.1.0",
+    "version": "1.0.1",
     "platforms": ["ios", "android"],
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ETH_image.png",
     "splash": {
-      "image": "./assets/splash.png"
+      "image": "./assets/ETH_splash.png"
+    },
+    "ios": {
+      "bundleIdentifier": "com.alber06.emoneytransfer",
+      "buildNumber": "1.0.1"
+    },
+    "android": {
+      "package": "com.alber06.emoneytransfer",
+      "versionCode": 1
     }
   }
 }
