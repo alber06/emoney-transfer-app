@@ -25,10 +25,7 @@ const useUser = () => {
     setLoading(true)
 
     try {
-      const authUserDoc = await firebase.auth().signInWithEmailAndPassword(email, password)
-      const userData = await mapUserData(authUserDoc.user)
-
-      return localstorage.setItem('auth', userData)
+      await firebase.auth().signInWithEmailAndPassword(email, password)
     } finally {
       setLoading(false)
     }
@@ -38,10 +35,7 @@ const useUser = () => {
     setLoading(true)
 
     try {
-      const userCreated = await firebase.auth().createUserWithEmailAndPassword(email, password)
-      const userData = await mapUserData(userCreated.user)
-
-      await localstorage.setItem('auth', userData)
+      await firebase.auth().createUserWithEmailAndPassword(email, password)
     } finally {
       setLoading(false)
     }
@@ -58,7 +52,7 @@ const useUser = () => {
 
       return () => {
         setLoading(false)
-        return unsubscribe()
+        unsubscribe()
       }
     }
 
@@ -80,9 +74,7 @@ const useUser = () => {
     const savedUser = localstorage.getItem('auth')
     setAuthUser(savedUser)
 
-    return () => {
-      cancelAuthListener()
-    }
+    return cancelAuthListener
   }, [])
 
   return { authUser, user, loading, logout, login, signup }

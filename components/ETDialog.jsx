@@ -36,16 +36,21 @@ const ETDialog = ({ visible, hideDialog }) => {
     async function getUsers() {
       setGetUsersLoading(true)
 
-      const usersSnapshot = await firebase.firestore().collection('users').get()
-      const usersDocs = []
-      usersSnapshot.docs.forEach((doc) => {
-        const docData = doc.data()
+      try {
+        const usersSnapshot = await firebase.firestore().collection('users').get()
+        const usersDocs = []
+        usersSnapshot.docs.forEach((doc) => {
+          const docData = doc.data()
 
-        if (doc.data().uid !== user.uid) usersDocs.push(docData)
-      })
+          if (doc.data().uid !== user.uid) usersDocs.push(docData)
+        })
 
-      setGetUsersLoading(false)
-      setUsers(usersDocs)
+        setUsers(usersDocs)
+      } catch (err) {
+        setErrorMessage(`Error getting users: ${err.message}`)
+      } finally {
+        setGetUsersLoading(false)
+      }
     }
 
     getUsers()
