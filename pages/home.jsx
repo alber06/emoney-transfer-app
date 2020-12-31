@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { ActivityIndicator, Headline, Button, Text, Colors } from 'react-native-paper'
+import { ActivityIndicator, Headline, FAB, Text, Colors } from 'react-native-paper'
 import useUser from '../utils/auth/useUser'
 import { ETDialog } from '../components'
 
@@ -25,9 +24,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: '20%',
-    borderRadius: 50 / 2,
-    width: 70,
     alignSelf: 'center',
+    backgroundColor: Colors.blueA700,
   },
 })
 
@@ -50,9 +48,7 @@ const Home = () => {
         {user.amount}
         &nbsp; SPH
       </Headline>
-      <Button mode="contained" onPress={() => setDialogVisible((newVisibleState) => !newVisibleState)} style={styles.button}>
-        <Icon name="exchange" size={20} />
-      </Button>
+      <FAB style={styles.button} icon="bank-transfer" onPress={() => setDialogVisible((newVisibleState) => !newVisibleState)} />
     </View>
   )
 
