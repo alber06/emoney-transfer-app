@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const ETTextInput = ({ onChangeText, label, icon, value, secureTextEntry, error }) => {
+const ETTextInput = ({ onChangeText, label, icon = '', value = '', secureTextEntry = false, error = false }) => {
   const onChange = (newValue) => {
     onChangeText(newValue)
   }
@@ -35,13 +35,6 @@ ETTextInput.propTypes = {
   value: PropTypes.string,
   secureTextEntry: PropTypes.bool,
   error: PropTypes.bool,
-}
-
-ETTextInput.defaultProps = {
-  icon: '',
-  value: '',
-  secureTextEntry: false,
-  error: false,
 }
 
 export default ETTextInput

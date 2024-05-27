@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const ETNumericInput = ({ onChangeText, label, value, error, max, disabled }) => {
+const ETNumericInput = ({ onChangeText, label, value = '', error = false, max = '0', disabled = false }) => {
   const onChange = (newValue) => {
     const parsedQty = Number.parseInt(newValue, 10)
     if (max && parsedQty > max) {
@@ -41,13 +41,6 @@ ETNumericInput.propTypes = {
   error: PropTypes.bool,
   max: PropTypes.string,
   disabled: PropTypes.bool,
-}
-
-ETNumericInput.defaultProps = {
-  value: '',
-  error: false,
-  max: '0',
-  disabled: false,
 }
 
 export default ETNumericInput

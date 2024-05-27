@@ -1,8 +1,8 @@
 // @generated: @expo/next-adapter@2.1.0
 import 'react-native-gesture-handler'
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
-import AppLoading from 'expo-app-loading'
+import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native'
 import { Provider as PaperProvider, DefaultTheme, Colors } from 'react-native-paper'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -29,8 +29,17 @@ const theme = {
 }
 
 const AppNavigator = () => {
-  const [isReady, setIsReady] = useState()
   const { authUser } = useUser()
+
+  useEffect(() => {
+    const setAppReady = async () => {
+      await SplashScreen.hideAsync();
+    }
+
+    if(authUser) {
+      setAppReady()
+    }
+  }, [ authUser ])
 
   const getAuthStack = () => (
     <>
@@ -65,10 +74,7 @@ const AppNavigator = () => {
 
   return (
     <PaperProvider theme={theme}>
-      {!authUser ? (
-        <AppLoading onError={console.warn} />
-      ) : (
-        <NavigationContainer>
+      <NavigationContainer>
           <Stack.Navigator
             headerMode="screen"
             screenOptions={{
@@ -79,7 +85,6 @@ const AppNavigator = () => {
             {authUser && authUser.token ? getMainStack() : getAuthStack()}
           </Stack.Navigator>
         </NavigationContainer>
-      )}
     </PaperProvider>
   )
 }

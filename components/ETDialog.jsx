@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, TouchableHighlight } from 'react-native'
-import * as firebase from 'firebase'
+import firebase from 'firebase/compat/app'
 import PropTypes from 'prop-types'
 import { Button, Dialog, Portal, ActivityIndicator, Menu, TextInput, Colors } from 'react-native-paper'
 import ETNumericInput from './transfer'
@@ -20,17 +20,17 @@ const styles = StyleSheet.create({
   button: { flex: 1 },
 })
 
-const ETDialog = ({ visible, hideDialog }) => {
+const ETDialog = ({ visible = false, hideDialog }) => {
   const { user } = useUser()
-  const [selectedEmail, setSelectedEmail] = useState()
-  const [selectedUid, setSelectedUid] = useState()
-  const [amount, setAmount] = useState('0')
-  const [getUsersLoading, setGetUsersLoading] = useState(false)
-  const [transferLoading, setTransferLoading] = useState(false)
-  const [users, setUsers] = useState([])
-  const [menuVisible, setMenuVisible] = useState(false)
-  const [successMessage, setSuccessMessage] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [ selectedEmail, setSelectedEmail ] = useState()
+  const [ selectedUid, setSelectedUid ] = useState()
+  const [ amount, setAmount ] = useState('0')
+  const [ getUsersLoading, setGetUsersLoading ] = useState(false)
+  const [ transferLoading, setTransferLoading ] = useState(false)
+  const [ users, setUsers ] = useState([])
+  const [ menuVisible, setMenuVisible ] = useState(false)
+  const [ successMessage, setSuccessMessage ] = useState('')
+  const [ errorMessage, setErrorMessage ] = useState('')
 
   useEffect(() => {
     async function getUsers() {
@@ -54,7 +54,7 @@ const ETDialog = ({ visible, hideDialog }) => {
     }
 
     getUsers()
-  }, [user])
+  }, [ user ])
 
   const onDismiss = (result) => {
     setSelectedEmail()
@@ -166,10 +166,6 @@ const ETDialog = ({ visible, hideDialog }) => {
 ETDialog.propTypes = {
   visible: PropTypes.bool,
   hideDialog: PropTypes.func.isRequired,
-}
-
-ETDialog.defaultProps = {
-  visible: false,
 }
 
 export default ETDialog

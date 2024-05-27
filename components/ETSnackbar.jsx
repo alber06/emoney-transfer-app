@@ -2,7 +2,7 @@ import React from 'react'
 import { Snackbar } from 'react-native-paper'
 import PropTypes from 'prop-types'
 
-const ETSnackbar = ({ onDismiss, text, color }) => (
+const ETSnackbar = ({ onDismiss, text = '', color = '#5CB85C' }) => (
   <Snackbar
     visible={Boolean(text)}
     duration={3000}
@@ -21,8 +21,4 @@ ETSnackbar.propTypes = {
   color: PropTypes.string,
 }
 
-ETSnackbar.defaultProps = {
-  text: '',
-  color: '#5CB85C',
-}
 export default ETSnackbar

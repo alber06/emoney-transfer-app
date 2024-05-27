@@ -1,7 +1,7 @@
-import * as firebase from 'firebase'
-import 'firebase/firestore'
-import 'firebase/auth'
-import 'firebase/functions'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
+import 'firebase/compat/functions'
 
 import { FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_DATABASE_URL, FIREBASE_PROJECT_ID } from '@env'
 
@@ -15,7 +15,7 @@ const config = {
 export default function initFirebase() {
   if (!firebase.apps.length) {
     firebase.initializeApp(config)
-    firebase.firestore()
+    firebase.firestore().settings({ experimentalAutoDetectLongPolling: true })
     firebase.functions()
   }
 }

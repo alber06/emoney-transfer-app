@@ -1,6 +1,6 @@
-import 'firebase/auth'
+import 'firebase/compat/auth'
 import { useEffect, useState } from 'react'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 import * as localstorage from './localstorage'
 import initFirebase from './initFirebase'
 import mapUserData from './mapUserData'
@@ -8,9 +8,9 @@ import mapUserData from './mapUserData'
 initFirebase()
 
 const useUser = () => {
-  const [authUser, setAuthUser] = useState({})
-  const [user, setUser] = useState({})
-  const [loading, setLoading] = useState(false)
+  const [ authUser, setAuthUser ] = useState({})
+  const [ user, setUser ] = useState({})
+  const [ loading, setLoading ] = useState(false)
 
   const logout = async () => {
     try {
@@ -44,6 +44,7 @@ const useUser = () => {
   useEffect(() => {
     if (authUser && authUser.token) {
       setLoading(true)
+      
       const userDoc = firebase.firestore().collection('users').doc(authUser.uid)
       const unsubscribe = userDoc.onSnapshot((querySnapshot) => {
         setUser((prevUser) => ({ ...prevUser, ...querySnapshot.data() }))
@@ -57,7 +58,7 @@ const useUser = () => {
     }
 
     return () => {}
-  }, [authUser])
+  }, [ authUser ])
 
   useEffect(() => {
     const cancelAuthListener = firebase.auth().onIdTokenChanged(async (authUserChanged) => {
@@ -71,8 +72,12 @@ const useUser = () => {
       }
     })
 
-    const savedUser = localstorage.getItem('auth')
-    setAuthUser(savedUser)
+    const setSavedUser = async () => {
+      const savedUser = await localstorage.getItem('auth')
+      setAuthUser(savedUser)
+    }
+
+    setSavedUser()
 
     return cancelAuthListener
   }, [])

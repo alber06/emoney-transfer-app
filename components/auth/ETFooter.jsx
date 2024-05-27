@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   captionContainer: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', margin: 30, height: 70 },
 })
 
-const ETFooter = ({ linkText, linkName, text }) => {
+const ETFooter = ({ linkText, linkName, text = '' }) => {
   const navigation = useNavigation()
 
   return (
@@ -30,10 +30,6 @@ ETFooter.propTypes = {
   linkName: PropTypes.string.isRequired,
   linkText: PropTypes.string.isRequired,
   text: PropTypes.string,
-}
-
-ETFooter.defaultProps = {
-  text: '',
 }
 
 export default ETFooter
