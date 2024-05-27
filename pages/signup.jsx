@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
 
 const SignUp = ({ navigation }) => {
   const { signup, loading } = useUser()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
-  const [passwordsError, setPasswordsError] = useState(false)
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ repeatPassword, setRepeatPassword ] = useState('')
+  const [ errorMessage, setErrorMessage ] = useState('')
+  const [ passwordsError, setPasswordsError ] = useState(false)
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
@@ -35,11 +35,11 @@ const SignUp = ({ navigation }) => {
     })
 
     return unsubscribe
-  }, [navigation])
+  }, [ navigation ])
 
   const onSubmit = async () => {
     if (password !== repeatPassword) {
-      setErrorMessage('Passwords does not match')
+      setErrorMessage('Passwords do not match')
       setPasswordsError(true)
       return
     }

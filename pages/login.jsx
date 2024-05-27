@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
 })
 
 const Login = ({ navigation }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ errorMessage, setErrorMessage ] = useState('')
   const { login, loading } = useUser()
 
   const onSubmit = async () => {

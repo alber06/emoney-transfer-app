@@ -1,5 +1,4 @@
 import React from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import { View, StyleSheet } from 'react-native'
 import { Headline, Avatar } from 'react-native-paper'
 

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 
 const Home = () => {
   const { user, loading } = useUser()
-  const [dialogVisible, setDialogVisible] = useState(false)
+  const [ dialogVisible, setDialogVisible ] = useState(false)
 
   const hideDialog = () => {
     setDialogVisible(false)

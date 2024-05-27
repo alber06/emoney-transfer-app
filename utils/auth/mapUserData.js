@@ -1,6 +1,6 @@
 const mapUserData = async (user = {}) => {
   const { uid, email } = user
-  const token = await user.getIdToken(true)
+  const token = user.getIdToken ? await user.getIdToken(true) : null
 
   return {
     uid,
